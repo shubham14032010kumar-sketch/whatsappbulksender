@@ -52,18 +52,27 @@ ALTER TABLE public.orders ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.licenses ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.machine_logs ENABLE ROW LEVEL SECURITY;
 
--- Allow public read access only for license validation query (by exact key + machine_id)
-CREATE POLICY "Allow public license validation" ON public.licenses
+-- Allow public read access only for active, unexpired licenses
+CREATE POLICY "Public license validation" ON public.licenses
     FOR SELECT
-    USING (true);
+    TO anon, authenticated
+    USING (is_active = true AND expires_at > timezone('utc'::text, now()));
 
 -- Allow authenticated admins full access
-CREATE POLICY "Allow admin full access orders" ON public.orders
+CREATE POLICY "Authenticated admin manage orders" ON public.orders
     FOR ALL
     TO authenticated
-    USING (true);
+    USING (auth.uid() IS NOT NULL)
+    WITH CHECK (auth.uid() IS NOT NULL);
 
-CREATE POLICY "Allow admin full access licenses" ON public.licenses
+CREATE POLICY "Authenticated admin manage licenses" ON public.licenses
     FOR ALL
     TO authenticated
-    USING (true);
+    USING (auth.uid() IS NOT NULL)
+    WITH CHECK (auth.uid() IS NOT NULL);
+
+-- Allow machine logging
+CREATE POLICY "Allow machine logging" ON public.machine_logs
+    FOR INSERT
+    TO anon, authenticated
+    WITH CHECK (machine_id IS NOT NULL AND length(machine_id) > 0);
