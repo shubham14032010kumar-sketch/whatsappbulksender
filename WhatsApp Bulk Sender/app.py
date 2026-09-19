@@ -15,7 +15,7 @@ import threading
 import queue
 import re
 from datetime import datetime
-import tkinter as 
+import tkinter as tk
 from tkinter import ttk, filedialog, messagebox, scrolledtext
 
 # Core Architecture Modules
