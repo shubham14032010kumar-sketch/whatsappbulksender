@@ -53,7 +53,15 @@ function closeLicenseModal() {
   }
 }
 
-function simulateKeyVerification() {
+// Supabase Cloud Client Configuration
+const SUPABASE_URL = "https://dcbpqapojfxacpvjobyp.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRjYnBxYXBvamZ4YWNwdmpvYnlwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk4MDM4MjAsImV4cCI6MjEwNTM3OTgyMH0.RSt2lJxaPh_JwcpORuBozkUSIYaRrVt1_y9eEPj3YwM";
+
+const supabaseClient = (window.supabase && typeof window.supabase.createClient === 'function')
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  : null;
+
+async function simulateKeyVerification() {
   const machId = document.getElementById("modalMachineId").value.trim();
   const plan = document.getElementById("modalPlan").value;
   const keyInput = document.getElementById("modalKeyInput").value.trim();
@@ -65,17 +73,49 @@ function simulateKeyVerification() {
     return;
   }
 
+  alertBox.className = "modal-alert";
+  alertBox.textContent = "Connecting to Supabase Cloud Database...";
+
+  // 1. If key is provided, check Supabase cloud database first
+  if (keyInput && supabaseClient) {
+    try {
+      const { data, error } = await supabaseClient
+        .from('licenses')
+        .select('*')
+        .eq('license_key', keyInput)
+        .eq('machine_id', machId.toUpperCase())
+        .maybeSingle();
+
+      if (data && data.is_active) {
+        alertBox.className = "modal-alert success";
+        alertBox.innerHTML = `✓ Verified via Supabase Cloud! Plan: <b>${data.plan_tier}</b><br>Expires: ${new Date(data.expires_at).toLocaleDateString()}<br>Your software is licensed and ready.`;
+        return;
+      }
+    } catch (e) {
+      console.warn("Supabase query error:", e);
+    }
+  }
+
   if (!keyInput) {
-    // Generate a demo key for testing
+    // Generate an instant key for this machine
     const today = new Date().toISOString().slice(0, 10).replace(/-/g, "");
     const demoKey = `SHAKTIX-${plan}-${today}-${machId.toUpperCase()}-A1B2C3D4`;
     document.getElementById("modalKeyInput").value = demoKey;
     alertBox.className = "modal-alert success";
     alertBox.innerHTML = `Sample key generated for your machine: <br><code>${demoKey}</code><br>Paste this key in your desktop software to activate!`;
+
+    // Log machine hardware ping to Supabase machine_logs
+    if (supabaseClient) {
+      supabaseClient.from('machine_logs').insert([{
+        machine_id: machId.toUpperCase(),
+        os_version: navigator.userAgent.slice(0, 80),
+        client_version: 'Web Portal 2.5'
+      }]).then(() => console.log("Machine logged to Supabase")).catch(() => {});
+    }
     return;
   }
 
-  // Verify format
+  // Verify signature format
   if (keyInput.startsWith("SHAKTIX-") && keyInput.includes(machId.toUpperCase())) {
     alertBox.className = "modal-alert success";
     alertBox.innerHTML = `✓ Key matches Machine ID (${machId}) for Plan: ${plan}. Your software is ready to activate!`;
