@@ -3,328 +3,785 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ShaktiX — Enterprise WhatsApp Campaign Sender & AI Automation</title>
-  <meta name="description" content="Commercial WhatsApp Bulk Campaign Sender with Anti-Ban AI Spintax, 2-Way Auto-Responder, CRM, and Instagram Lead Finder.">
+  <title>ShaktiX — Enterprise WhatsApp Campaign Sender & Desktop Automation</title>
+  <meta name="description" content="Professional Windows desktop software for WhatsApp customer campaigns, AI message personalization, 2-way auto-responder, and contact management.">
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <header class="navbar">
+  <!-- Top Announcement & Quick Contact Bar -->
+  <aside class="top-contact-bar">
+    <div class="container top-contact-inner">
+      <div class="top-left-badge">
+        <span class="pulse-dot"></span> Enterprise v2.5 Desktop Edition Released
+      </div>
+      <div class="top-contact-actions">
+        <a href="tel:+918825208568" class="contact-pill phone-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          Call Sales: +91 8825208568
+        </a>
+        <a href="https://wa.me/918298136441?text=Hi%20ShaktiX!%20I%20am%20interested%20in%20the%20WhatsApp%20Bulk%20Sender%20software." target="_blank" rel="noopener" class="contact-pill wa-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z"/></svg>
+          WhatsApp: +91 8298136441
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
     <div class="nav-container">
-      <div class="logo">
+      <a href="#" class="logo" aria-label="ShaktiX Home">
         <span class="logo-bolt">⚡</span>
         <span class="logo-text">ShaktiX <span>Enterprise</span></span>
-      </div>
-      <nav class="nav-links">
+      </a>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav-links" id="navLinks">
         <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
         <a href="#demo">Live Demo</a>
-        <a href="#leads">Lead Finder</a>
+        <a href="#dashboard-preview">Product Tour</a>
         <a href="#pricing">Pricing</a>
+        <a href="#security">Security</a>
         <a href="#faq">FAQ</a>
       </nav>
+
       <div class="nav-actions">
-        <button class="btn btn-outline" onclick="openLicenseModal()">🔑 Activate License</button>
-        <a href="#pricing" class="btn btn-primary">Get Software Now</a>
+        <button class="btn btn-outline" onclick="openLicenseModal()" id="btnNavLicense">🔑 Activate License</button>
+        <a href="#pricing" class="btn btn-primary" id="btnNavGetStarted">Get Started</a>
       </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-glow"></div>
-    <div class="container hero-content">
-      <div class="badge-tag">
-        <span class="pulse-dot"></span> Next-Gen AI WhatsApp Marketing Platform v2.5
-      </div>
-      <h1 class="hero-title">
-        Broadcast <span>10,000+ Offers</span> Directly on WhatsApp Without Getting Banned
-      </h1>
-      <p class="hero-subtitle">
-        No contact saving needed. Armed with <strong>Stealth Anti-Ban Shields</strong>, <strong>1-Click AI Spintax</strong>, <strong>Instagram Lead Extraction</strong>, and <strong>24/7 Auto-Responding</strong>.
-      </p>
-
-      <div class="hero-cta-group">
-        <a href="#pricing" class="btn btn-primary btn-lg">🚀 Get Started Today</a>
-        <a href="#demo" class="btn btn-secondary btn-lg">▶ Watch 30s Demo</a>
-      </div>
-
-      <div class="hero-stats">
-        <div class="stat-item">
-          <span class="stat-number">99.4%</span>
-          <span class="stat-label">Delivery Rate</span>
-        </div>
-        <div class="stat-separator"></div>
-        <div class="stat-item">
-          <span class="stat-number">Zero</span>
-          <span class="stat-label">Saved Contacts Needed</span>
-        </div>
-        <div class="stat-separator"></div>
-        <div class="stat-item">
-          <span class="stat-number">100%</span>
-          <span class="stat-label">Offline Private Security</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Live Simulated Demo Section -->
-  <section id="demo" class="demo-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">INTERACTIVE PREVIEW</span>
-        <h2>See How The Anti-Ban Engine Works</h2>
-        <p>Dynamic Spintax ensures every single message has natural variations that mimic human typing.</p>
-      </div>
-
-      <div class="mockup-container">
-        <div class="mockup-window">
-          <div class="mockup-header">
-            <span class="dot red"></span>
-            <span class="dot yellow"></span>
-            <span class="dot green"></span>
-            <span class="window-title">ShaktiX Campaign Sender — Active Dispatch</span>
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="hero-glow"></div>
+      <div class="container hero-content">
+        <div class="hero-text-block">
+          <div class="badge-tag">
+            <span class="pulse-dot"></span> Professional Windows Desktop Marketing Suite
           </div>
-          <div class="mockup-body">
-            <div class="chat-preview">
-              <div class="chat-header">
-                <div class="chat-avatar">📱</div>
+          <h1 class="hero-title">
+            WhatsApp Campaigns.<br>
+            <span>Smarter, Simpler, Scalable.</span>
+          </h1>
+          <p class="hero-subtitle">
+            Manage customer outreach, dynamic personalized messaging, and automated 2-way replies from one powerful, hardware-secured desktop platform.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#demo" class="btn btn-primary btn-lg" id="btnHeroDemo">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              Explore Live Demo
+            </a>
+            <a href="#pricing" class="btn btn-secondary btn-lg" id="btnHeroPricing">
+              View Pricing Plans
+            </a>
+          </div>
+
+          <!-- Trust Badges Bar -->
+          <div class="hero-trust-row">
+            <div class="trust-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>100% Local Data Privacy</span>
+            </div>
+            <div class="trust-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Smart Humanized Delays</span>
+            </div>
+            <div class="trust-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Instant Cloud Activation</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Desktop Software Mockup -->
+        <div class="hero-preview-block">
+          <div class="app-window-frame">
+            <div class="window-header">
+              <div class="window-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="window-title">ShaktiX Enterprise v2.5 — Campaign Dispatcher</div>
+              <div class="window-badge">● Engine Ready</div>
+            </div>
+
+            <div class="window-body">
+              <!-- Mock Stat Counters -->
+              <div class="mock-stats-grid">
+                <div class="mock-stat-card">
+                  <span class="stat-label">Total Targeted</span>
+                  <span class="stat-num">5,420</span>
+                </div>
+                <div class="mock-stat-card">
+                  <span class="stat-label">Delivered Rate</span>
+                  <span class="stat-num text-success">99.2%</span>
+                </div>
+                <div class="mock-stat-card">
+                  <span class="stat-label">Hot Inbound Leads</span>
+                  <span class="stat-num text-blue">486</span>
+                </div>
+              </div>
+
+              <!-- Active Campaign Mini Card -->
+              <div class="mock-campaign-box">
+                <div class="campaign-box-top">
+                  <div>
+                    <span class="camp-name">Festive Admission Drive 2026</span>
+                    <span class="camp-meta">Target: Coaching Leads (Patna & Delhi)</span>
+                  </div>
+                  <span class="status-chip active">Dispatching</span>
+                </div>
+
+                <div class="progress-bar-container">
+                  <div class="progress-bar-fill" style="width: 78%;"></div>
+                </div>
+                <div class="progress-labels">
+                  <span>Sent: 4,228 / 5,420</span>
+                  <span>Delay: 8-15s (Anti-Ban Safe)</span>
+                </div>
+              </div>
+
+              <!-- Real-time Activity Log Preview -->
+              <div class="mock-log-preview">
+                <div class="log-line"><span class="log-time">[14:48:10]</span> [SUCCESS] Delivered to +91 98350***** (Amit Sharma) — Variant #3</div>
+                <div class="log-line"><span class="log-time">[14:48:22]</span> [AUTO-RESPONDER] Inbound "DEMO" detected → Brochure dispatched!</div>
+                <div class="log-line"><span class="log-time">[14:48:35]</span> [HUMAN DELAY] Random pause for 12 seconds to ensure safety...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Metrics & Proof Banner -->
+    <section class="proof-banner">
+      <div class="container">
+        <div class="proof-grid">
+          <div class="proof-card">
+            <span class="proof-num">10M+</span>
+            <span class="proof-label">Messages Processed Locally</span>
+          </div>
+          <div class="proof-card">
+            <span class="proof-num">2,400+</span>
+            <span class="proof-label">Active Windows Deployments</span>
+          </div>
+          <div class="proof-card">
+            <span class="proof-num">0%</span>
+            <span class="proof-label">Cloud Data Storage (100% Private)</span>
+          </div>
+          <div class="proof-card">
+            <span class="proof-num">&lt; 30s</span>
+            <span class="proof-label">Hardware Key Cloud Activation</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="badge-tag">Engineered for Reliability</div>
+          <h2 class="section-title">Essential Modules Built for High Performance</h2>
+          <p class="section-desc">Every tool you need to run organized, compliant, and personalized customer messaging on desktop.</p>
+        </div>
+
+        <div class="features-grid">
+          <!-- Feature 1 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+            </div>
+            <h3 class="feature-title">AI Spintax Personalization</h3>
+            <p class="feature-text">Automatically creates hundreds of natural word variations so every recipient gets a unique, tailored message.</p>
+            <div class="feature-mini-chip">
+              <code>{Namaste|Hello|Dear} {Name}</code>
+            </div>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </div>
+            <h3 class="feature-title">Smart Humanized Throttling</h3>
+            <p class="feature-text">Customizable delay intervals (8–18s) with natural jitter and sleep cycles to mimic genuine human typing behavior.</p>
+            <div class="feature-mini-chip">
+              <span>Dynamic Interval: 8s–15s jitter</span>
+            </div>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            </div>
+            <h3 class="feature-title">2-Way Keyword Auto-Responder</h3>
+            <p class="feature-text">24/7 rule-based automation. Instantly triggers brochure sends and marks incoming replies as hot leads in your CRM.</p>
+            <div class="feature-mini-chip">
+              <span>Rule: 'PRICE' → Send PDF Catalog</span>
+            </div>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            </div>
+            <h3 class="feature-title">Excel & CSV Contact Importer</h3>
+            <p class="feature-text">Automatic column detection, mobile number sanitization (auto +91 prefix), duplicate cleansing, and category tags.</p>
+            <div class="feature-mini-chip">
+              <span>Auto-clean + Deduplication</span>
+            </div>
+          </div>
+
+          <!-- Feature 5 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </div>
+            <h3 class="feature-title">Hardware-Locked Licensing</h3>
+            <p class="feature-text">Cryptographically binds licenses to client Machine GUIDs. Includes Supabase Cloud verification and offline recovery.</p>
+            <div class="feature-mini-chip">
+              <span>Cloud Sync + Offline HMAC</span>
+            </div>
+          </div>
+
+          <!-- Feature 6 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <h3 class="feature-title">Contact CRM & Segmentation</h3>
+            <p class="feature-text">Filter master databases by City, Category, Status, and Tags. Export filtered segments directly to CSV or campaign lists.</p>
+            <div class="feature-mini-chip">
+              <span>Multi-filter: City + Category + Tag</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works (3 Steps) -->
+    <section class="how-it-works-section" id="how-it-works">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="badge-tag">Streamlined Workflow</div>
+          <h2 class="section-title">How It Works in 3 Simple Steps</h2>
+          <p class="section-desc">Get your first personalized WhatsApp campaign running in under 2 minutes.</p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-badge">Step 1</div>
+            <h3 class="step-title">Import & Segment Contacts</h3>
+            <p class="step-text">Upload your Excel or CSV contact sheet, or paste numbers directly into Quick Paste. The system automatically fixes formats and deduplicates.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-badge">Step 2</div>
+            <h3 class="step-title">Craft Dynamic Message</h3>
+            <p class="step-text">Select a pre-built industry template or write your own. Inject <code>{Name}</code> and <code>{City}</code> tags and generate natural Spintax variants in 1 click.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-badge">Step 3</div>
+            <h3 class="step-title">Scan QR & Launch</h3>
+            <p class="step-text">Scan WhatsApp Web QR code through your local Chrome driver. Hit Launch Campaign and monitor live progress with automated pauses.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Live Demo Section -->
+    <section class="demo-section" id="demo">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="badge-tag">Interactive Simulation Sandbox</div>
+          <h2 class="section-title">Test the Campaign Engine in Real-Time</h2>
+          <p class="section-desc">Experience how dynamic personalization and automated responses work. This sandbox simulates software behavior safely in your browser.</p>
+        </div>
+
+        <div class="demo-layout">
+          <!-- Demo Controls Column -->
+          <div class="demo-controls-card">
+            <h3 class="demo-card-title">1. Choose Industry Template</h3>
+            <div class="template-pill-group" id="templatePills">
+              <button class="pill-btn active" data-template="coaching">🎓 Coaching & Institutes</button>
+              <button class="pill-btn" data-template="realestate">🏢 Real Estate & Plots</button>
+              <button class="pill-btn" data-template="retail">🛍️ Retail & Showroom</button>
+              <button class="pill-btn" data-template="b2b">💼 B2B & Agency</button>
+              <button class="pill-btn" data-template="payment">💳 Payment Notice</button>
+            </div>
+
+            <h3 class="demo-card-title" style="margin-top: 24px;">2. Personalization Tokens</h3>
+            <div class="input-row">
+              <div class="input-field">
+                <label for="demoCustName">Recipient Name</label>
+                <input type="text" id="demoCustName" value="Amit Sharma">
+              </div>
+              <div class="input-field">
+                <label for="demoCustCity">City</label>
+                <input type="text" id="demoCustCity" value="Patna">
+              </div>
+            </div>
+
+            <div class="demo-action-row">
+              <button class="btn btn-outline" id="btnRegenerateSpintax">🎲 Re-roll Spintax Variant</button>
+              <button class="btn btn-primary" id="btnSimulateSend">▶️ Simulate Dispatch</button>
+            </div>
+
+            <div class="demo-disclaimer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <span>Simulated Sandbox Environment: No actual WhatsApp messages are sent.</span>
+            </div>
+          </div>
+
+          <!-- Live WhatsApp Chat Simulator -->
+          <div class="demo-screen-card">
+            <div class="chat-header">
+              <div class="chat-avatar">📱</div>
+              <div class="chat-user-info">
+                <span class="chat-user-name" id="chatRecipientName">Amit Sharma (+91 98350*****)</span>
+                <span class="chat-user-status">online • WhatsApp Web Simulator</span>
+              </div>
+            </div>
+
+            <div class="chat-body" id="chatMessageArea">
+              <!-- Outbound message bubble -->
+              <div class="chat-bubble outbound" id="outboundMsgBubble">
+                <p id="simulatedMessageText">Namaste Amit Sharma ji! Admissions are now open for NEET & JEE batches with up to 50% scholarship test in Patna. Reply DEMO to book your slot!</p>
+                <span class="msg-meta">14:48 <span class="ticks">✓✓</span></span>
+              </div>
+
+              <!-- Inbound reply bubble (triggered on simulation) -->
+              <div class="chat-bubble inbound" id="inboundMsgBubble" style="display: none;">
+                <p>DEMO</p>
+                <span class="msg-meta">14:49</span>
+              </div>
+
+              <!-- Auto-responder triggered bubble -->
+              <div class="chat-bubble outbound auto-reply" id="autoReplyBubble" style="display: none;">
+                <p>⚡ <b>Auto-Responder:</b> Thank you Amit ji! Here is your Free Demo Pass and full Prospectus brochure: <br>🔗 <code>shaktix.local/prospectus.pdf</code></p>
+                <span class="msg-meta">14:49 (Instant) <span class="ticks">✓✓</span></span>
+              </div>
+            </div>
+
+            <!-- Simulated Dispatch Status Bar -->
+            <div class="simulation-status-bar" id="simStatusBar">
+              <div class="sim-progress-track">
+                <div class="sim-progress-fill" id="simProgressFill"></div>
+              </div>
+              <span id="simStatusText">Ready for simulation. Click 'Simulate Dispatch'.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Tour / Visual Capabilities -->
+    <section class="dashboard-tour-section" id="dashboard-preview">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="badge-tag">Inside the Desktop Application</div>
+          <h2 class="section-title">Built Specially for Windows Power Users</h2>
+          <p class="section-desc">Designed with PySide6 / Tkinter desktop responsiveness, dark aesthetics, and robust local SQLite storage.</p>
+        </div>
+
+        <div class="tour-grid">
+          <div class="tour-card">
+            <div class="tour-badge">Module 01</div>
+            <h3>Smart Campaign Wizard</h3>
+            <p>5-step structured flow: Select Audience ➔ Load Template ➔ Personalize ➔ Configure Delays ➔ Launch. Real-time pause and stop controls.</p>
+          </div>
+          <div class="tour-card">
+            <div class="tour-badge">Module 02</div>
+            <h3>Stealth Chrome CDP Automation</h3>
+            <p>Runs your local Google Chrome profile with masked automation flags, automated modal dismissals, and seamless Enter key fallbacks.</p>
+          </div>
+          <div class="tour-card">
+            <div class="tour-badge">Module 03</div>
+            <h3>Full CRM & Contact Store</h3>
+            <p>Store thousands of leads with name, phone, city, status, and custom tags. Instant CSV export and granular segmentation.</p>
+          </div>
+          <div class="tour-card">
+            <div class="tour-badge">Module 04</div>
+            <h3>Embedded REST API & Webhooks</h3>
+            <p>Connect your existing websites, Google Forms, or CRM via local FastAPI endpoints on port 8000 for zero-delay message triggers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who Can Use ShaktiX (Use Cases) -->
+    <section class="use-cases-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="badge-tag">Tailored Solutions</div>
+          <h2 class="section-title">Who Benefits Most from ShaktiX?</h2>
+          <p class="section-desc">Whether you run a local institute or a digital marketing agency, ShaktiX adapts to your outreach needs.</p>
+        </div>
+
+        <div class="use-case-grid">
+          <div class="use-case-box">
+            <div class="box-icon">🎓</div>
+            <h4>Coaching & Institutes</h4>
+            <p>Send entrance exam alerts, scholarship test dates, fee reminders, and admit cards with personalized student names.</p>
+          </div>
+
+          <div class="use-case-box">
+            <div class="box-icon">🏢</div>
+            <h4>Real Estate & Plots</h4>
+            <p>Broadcast site-visit invitations, layout plans, and RERA project details with weekend appointment booking CTAs.</p>
+          </div>
+
+          <div class="use-case-box">
+            <div class="box-icon">🛍️</div>
+            <h4>Retail & Boutiques</h4>
+            <p>Share festival discount vouchers, VIP preview catalogs, and new collection launches directly to customer phones.</p>
+          </div>
+
+          <div class="use-case-box">
+            <div class="box-icon">💼</div>
+            <h4>B2B Agencies & Resellers</h4>
+            <p>Manage multiple customer campaigns, generate sub-licenses for clients, and export clean campaign delivery reports.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="badge-tag">Transparent Licensing</div>
+          <h2 class="section-title">Simple, Predictable Commercial Pricing</h2>
+          <p class="section-desc">All plans include the complete desktop software, offline Spintax engine, auto-responder, and dedicated support.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <!-- Starter Plan -->
+          <div class="pricing-card">
+            <div class="plan-header">
+              <span class="plan-name">Starter</span>
+              <div class="plan-price">₹999 <span class="period">/ 6 Months</span></div>
+              <p class="plan-sub">Ideal for solo businesses and boutique shops starting out.</p>
+            </div>
+            <ul class="plan-features">
+              <li><span class="check">✓</span> 1 Windows PC Hardware License</li>
+              <li><span class="check">✓</span> Up to 500 Messages / Day</li>
+              <li><span class="check">✓</span> 5 Built-in Industry Spintax Templates</li>
+              <li><span class="check">✓</span> 2-Way Keyword Auto-Responder</li>
+              <li><span class="check">✓</span> Excel & CSV Importer</li>
+              <li><span class="check">✓</span> Free Software Updates for 6 Months</li>
+              <li><span class="check">✓</span> WhatsApp & Phone Support</li>
+            </ul>
+            <a href="https://wa.me/918298136441?text=Hi!%20I%20want%20to%20buy%20ShaktiX%20Starter%20Plan%20(₹999%20/%206%20Months).%20Please%20share%20payment%20details%20and%20key." target="_blank" rel="noopener" class="btn btn-outline btn-block" id="btnBuyStarter">
+              Get Starter Plan
+            </a>
+          </div>
+
+          <!-- Pro Business Plan (Featured) -->
+          <div class="pricing-card featured">
+            <div class="featured-badge">MOST POPULAR</div>
+            <div class="plan-header">
+              <span class="plan-name">Pro Business</span>
+              <div class="plan-price">₹2,499 <span class="period">/ 1 Year</span></div>
+              <p class="plan-sub">Best for scaling institutes, developers, and growing brands.</p>
+            </div>
+            <ul class="plan-features">
+              <li><span class="check">✓</span> <b>Unlimited</b> Daily Messages (No limits)</li>
+              <li><span class="check">✓</span> 1 Windows PC Hardware License</li>
+              <li><span class="check">✓</span> Stealth Chrome CDP Anti-Ban Throttling</li>
+              <li><span class="check">✓</span> Advanced CRM & Custom Filter Segmentation</li>
+              <li><span class="check">✓</span> Meta Cloud API + WhatsApp Web Dual Engine</li>
+              <li><span class="check">✓</span> Embedded REST API for Webhooks & Forms</li>
+              <li><span class="check">✓</span> Priority 1-on-1 WhatsApp & Call Support</li>
+              <li><span class="check">✓</span> Free Version Updates for 1 Full Year</li>
+            </ul>
+            <a href="https://wa.me/918298136441?text=Hi!%20I%20want%20to%20buy%20ShaktiX%20Pro%20Business%20Plan%20(₹2,499%20/%201%20Year).%20Please%20share%20payment%20details%20and%20key." target="_blank" rel="noopener" class="btn btn-primary btn-block" id="btnBuyPro">
+              Get Pro Business
+            </a>
+          </div>
+
+          <!-- Agency Reseller Plan -->
+          <div class="pricing-card">
+            <div class="plan-header">
+              <span class="plan-name">Agency Reseller</span>
+              <div class="plan-price">₹4,999 <span class="period">/ Lifetime</span></div>
+              <p class="plan-sub">For digital agencies, consultants, and software resellers.</p>
+            </div>
+            <ul class="plan-features">
+              <li><span class="check">✓</span> <b>Unlimited Lifetime Access</b></li>
+              <li><span class="check">✓</span> Hardware License Key Generator Access</li>
+              <li><span class="check">✓</span> Client Edition Packager (Build custom installers)</li>
+              <li><span class="check">✓</span> Resell software to your own clients & keep 100%</li>
+              <li><span class="check">✓</span> White-label Reports & Brand Customization</li>
+              <li><span class="check">✓</span> Supabase Cloud Central Licensing Dashboard</li>
+              <li><span class="check">✓</span> VIP VIP Direct Call Support with Shubham</li>
+            </ul>
+            <a href="https://wa.me/918298136441?text=Hi!%20I%20want%20to%20buy%20ShaktiX%20Agency%20Reseller%20Lifetime%20(₹4,999).%20Please%20share%20payment%20details%20and%20key." target="_blank" rel="noopener" class="btn btn-outline btn-block" id="btnBuyAgency">
+              Get Agency License
+            </a>
+          </div>
+        </div>
+
+        <!-- Licensing & Purchase Notice -->
+        <div class="pricing-notice-card">
+          <div class="notice-col">
+            <h4>⚡ Instant Key Delivery</h4>
+            <p>Keys are issued within 5 minutes of UPI/Card payment via your unique Machine ID.</p>
+          </div>
+          <div class="notice-col">
+            <h4>🛡️ 7-Day Installation Guarantee</h4>
+            <p>Our team will personally help you set up and run your first campaign via AnyDesk or TeamViewer if needed.</p>
+          </div>
+          <div class="notice-col">
+            <h4>🔄 Machine Transfer Option</h4>
+            <p>Upgraded your laptop? Reach out to support to easily transfer your license to your new device.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust, Security & Compliance Section -->
+    <section class="security-section" id="security">
+      <div class="container">
+        <div class="security-card">
+          <div class="security-text">
+            <div class="badge-tag">Your Campaigns. Your Control.</div>
+            <h2 class="security-title">Local-First Architecture & Ethical Compliance</h2>
+            <p class="security-desc">
+              Unlike cloud-based tools that upload your private customer databases to external servers, 
+              <b>ShaktiX runs 100% locally on your own Windows computer</b>. Your customer phone numbers, messages, and contact lists never leave your hard drive.
+            </p>
+
+            <div class="security-points-list">
+              <div class="sec-point">
+                <span class="sec-icon">🔒</span>
                 <div>
-                  <div class="chat-contact-name">+91 98350 12345 (Amit Sharma)</div>
-                  <div class="chat-status">● Live Transmission Verified</div>
+                  <h5>Zero Cloud Contact Harvesting</h5>
+                  <p>All database records are stored in a local encrypted SQLite file on your PC.</p>
                 </div>
               </div>
-              <div class="chat-messages">
-                <div class="message-bubble outgoing">
-                  <p id="spintax-dynamic-text">Namaste Amit Sharma ji! Flat 20% discount on all new season arrivals at our showroom. Reply DEMO for instant catalog!</p>
-                  <span class="msg-meta">14:32 <span class="checks">✓✓</span></span>
-                </div>
-                <div class="message-bubble incoming">
-                  <p>Price aur photos share karo bhaiya?</p>
-                  <span class="msg-meta">14:33</span>
-                </div>
-                <div class="message-bubble outgoing auto-reply">
-                  <div class="badge-auto">🤖 2-Way Auto-Reply (Tag: 🔥 HOT LEAD)</div>
-                  <p>Sure Amit ji! Here is our PDF catalog & pricing sheet. Our executive will call you shortly.</p>
-                  <span class="msg-meta">14:33 <span class="checks">✓✓</span></span>
+              <div class="sec-point">
+                <span class="sec-icon">⚙️</span>
+                <div>
+                  <h5>Responsible Sending Controls</h5>
+                  <p>Configurable randomized intervals, hourly rate limits, and automatic stop rules to maintain healthy WhatsApp sender reputation.</p>
                 </div>
               </div>
-            </div>
-            <div class="console-sidebar">
-              <div class="console-header">Live Engine Console</div>
-              <div class="console-logs" id="console-logs">
-                <div class="log-row success">[14:32:01] Contact verified: +919835012345</div>
-                <div class="log-row info">[14:32:03] Generated Spintax variant #4</div>
-                <div class="log-row info">[14:32:05] Simulating human typing (9.4s pause)...</div>
-                <div class="log-row success">[14:32:15] DELIVERED ✓ to Amit Sharma</div>
-                <div class="log-row warning">[14:33:10] Inbound query detected: 'Price aur photos...'</div>
-                <div class="log-row success">[14:33:12] Auto-Responder triggered & Tagged as HOT_LEAD!</div>
+              <div class="sec-point">
+                <span class="sec-icon">📜</span>
+                <div>
+                  <h5>Opt-In & Consent Friendly</h5>
+                  <p>Includes built-in 'STOP' keyword auto-responder to instantly respect customer opt-out requests automatically.</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Features Grid -->
-  <section id="features" class="features-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">UNMATCHED POWER</span>
-        <h2>Built For Serious Growth & Agencies</h2>
-        <p>Everything you need to automate WhatsApp marketing without recurring SaaS limits.</p>
-      </div>
-
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🛡️</div>
-          <h3>Stealth Anti-Ban Shield</h3>
-          <p>Masks Chrome CDP, injects random human pauses (8–18s), and executes keyboard typing simulation to prevent WhatsApp automation triggers.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">🪄</div>
-          <h3>1-Click AI Spintax Magic</h3>
-          <p>Turns basic messages into rich multi-variant Spintax with dynamic <code>{Name}</code>, <code>{City}</code>, and industry-tailored templates.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">🎯</div>
-          <h3>Instagram Lead Finder</h3>
-          <p>Extract verified WhatsApp business numbers from public Instagram bios by City and Niche (Gyms, Boutiques, Real Estate, Clinics).</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">💬</div>
-          <h3>2-Way Auto-Responder</h3>
-          <p>24/7 engagement engine that triggers instant brochures on keywords like "price" and auto-tags high-intent buyers as <strong>🔥 HOT LEAD</strong>.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">📋</div>
-          <h3>Direct Paste Numbers</h3>
-          <p>Have 5,000 numbers in Notepad? No need to format Excel. Paste numbers directly with 1-click fallback greetings for unnamed contacts.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">🔑</div>
-          <h3>Hardware-Locked Security</h3>
-          <p>Cryptographic HMAC-SHA256 device binding keeps your data 100% offline. Zero subscription shut-offs or third-party cloud leaks.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing Table -->
-  <section id="pricing" class="pricing-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">COMMERCIAL PLANS</span>
-        <h2>Invest Once, Profit Forever</h2>
-        <p>Choose the license plan that fits your volume needs. Instant activation upon purchase.</p>
-      </div>
-
-      <div class="pricing-grid">
-        <!-- Starter Plan -->
-        <div class="pricing-card">
-          <div class="plan-header">
-            <h3>Starter Plan</h3>
-            <p>For solo shops & local startups</p>
-            <div class="price">₹999<span> / 6 Months</span></div>
+          <div class="security-sidebar">
+            <div class="sys-req-box">
+              <h4>System Requirements</h4>
+              <ul class="sys-req-list">
+                <li><b>OS:</b> Windows 10 or Windows 11 (64-bit)</li>
+                <li><b>Processor:</b> Intel Core i3 / AMD equivalent or higher</li>
+                <li><b>Memory (RAM):</b> 4 GB minimum (8 GB recommended)</li>
+                <li><b>Browser:</b> Google Chrome (latest version)</li>
+                <li><b>Storage:</b> 250 MB free disk space</li>
+                <li><b>Internet:</b> Active connection for WhatsApp Web synchronization</li>
+              </ul>
+            </div>
           </div>
-          <ul class="plan-features">
-            <li>✓ 500 Messages / Day</li>
-            <li>✓ Single Windows Machine Lock</li>
-            <li>✓ Text & Photo Broadcasts</li>
-            <li>✓ Basic Excel & CSV Import</li>
-            <li>✓ Standard Anti-Ban Delays</li>
-            <li>✕ Instagram Lead Extractor</li>
-            <li>✕ Auto-Responder Tagger</li>
-          </ul>
-          <button class="btn btn-outline full-width" onclick="buyPlan('STARTER')">Buy Starter License</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="badge-tag">Got Questions?</div>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-desc">Clear answers to help you get the most out of ShaktiX Enterprise.</p>
         </div>
 
-        <!-- Pro Plan -->
-        <div class="pricing-card featured">
-          <div class="popular-badge">MOST POPULAR</div>
-          <div class="plan-header">
-            <h3>Pro Business Plan</h3>
-            <p>For growing businesses & clinics</p>
-            <div class="price">₹2,499<span> / 1 Year</span></div>
+        <div class="faq-grid">
+          <div class="faq-card">
+            <h4>How does the software send messages?</h4>
+            <p>ShaktiX connects to your official WhatsApp Web session running in a secure, local Google Chrome automation driver. It automates chat loading, personalized text typing, and attachment sending just like a human assistant.</p>
           </div>
-          <ul class="plan-features">
-            <li>✓ <strong>5,000 Messages / Day</strong></li>
-            <li>✓ Single Windows Machine Lock</li>
-            <li>✓ <strong>Instagram Lead Extractor Built-in</strong></li>
-            <li>✓ <strong>2-Way Auto-Responder & HOT Lead Tagger</strong></li>
-            <li>✓ <strong>AI Spintax Magic & 5 Industry Templates</strong></li>
-            <li>✓ PDF Catalogs, Videos & Audios</li>
-            <li>✓ Priority WhatsApp Support</li>
-          </ul>
-          <button class="btn btn-primary full-width" onclick="buyPlan('PRO')">Get Pro License Key</button>
-        </div>
 
-        <!-- Agency / Reseller Plan -->
-        <div class="pricing-card">
-          <div class="plan-header">
-            <h3>Agency Reseller</h3>
-            <p>For marketing agencies & software resellers</p>
-            <div class="price">₹4,999<span> / Lifetime</span></div>
+          <div class="faq-card">
+            <h4>How does ShaktiX protect my account from restrictions?</h4>
+            <p>While no tool can claim a 100% ban guarantee because WhatsApp enforces strict policies against unsolicited spam, ShaktiX provides industry-leading safety controls: randomized 8–18s human delays, multi-variant Spintax, daily pacing limits, and automatic opt-out handling.</p>
           </div>
-          <ul class="plan-features">
-            <li>✓ <strong>Unlimited Messages / Day</strong></li>
-            <li>✓ <strong>Reseller Key Generator Included</strong></li>
-            <li>✓ White-label Client Edition Packager</li>
-            <li>✓ Full Master Admin Control Center</li>
-            <li>✓ Sell Unlimited Licenses at Your Price</li>
-            <li>✓ REST API & Meta Cloud Webhook Access</li>
-            <li>✓ Lifetime Feature Updates</li>
-          </ul>
-          <button class="btn btn-outline full-width" onclick="buyPlan('AGENCY')">Get Reseller Rights</button>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- FAQ Section -->
-  <section id="faq" class="faq-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">FREQUENTLY ASKED QUESTIONS</span>
-        <h2>Got Questions? We Have Answers</h2>
-      </div>
+          <div class="faq-card">
+            <h4>Where do I find my Machine ID for activation?</h4>
+            <p>Open ShaktiX on your Windows desktop, click the <b>License / About</b> tab in the menu, and copy your 8-character Machine ID (e.g. <code>B55291AF</code>). Send it to us to instantly issue your key.</p>
+          </div>
 
-      <div class="faq-grid">
-        <div class="faq-item">
-          <h4>Does this require saving contacts in phone?</h4>
-          <p>No! ShaktiX dispatches directly via WhatsApp Web protocols. You can broadcast to 5,000 numbers with zero contact saving.</p>
-        </div>
-        <div class="faq-item">
-          <h4>How does the license key activation work?</h4>
-          <p>Install the application on your Windows PC, open "License & Plans", copy your Machine ID, and paste the activation key you receive after purchase.</p>
-        </div>
-        <div class="faq-item">
-          <h4>What are the anti-ban safety precautions?</h4>
-          <p>We combine randomized delays (8–18s), simulated keystroke typing, and dynamic Spintax message variations to protect your WhatsApp number.</p>
-        </div>
-        <div class="faq-item">
-          <h4>Can I resell this to my clients?</h4>
-          <p>Yes! With the Agency Reseller Plan, you get the White-Label Client Packager and License Key Generator to sell software licenses at your own custom prices.</p>
+          <div class="faq-card">
+            <h4>Can I send images, PDFs, and video brochures?</h4>
+            <p>Yes! You can attach marketing images, PDF catalogs, admission brochures, and product flyers alongside your personalized text caption.</p>
+          </div>
+
+          <div class="faq-card">
+            <h4>Do I need technical or coding knowledge?</h4>
+            <p>Not at all. The desktop application features a simple graphical interface (GUI). If you can use Excel and Chrome, you can launch campaigns in minutes.</p>
+          </div>
+
+          <div class="faq-card">
+            <h4>How do I receive customer replies?</h4>
+            <p>Replies appear directly on your phone's WhatsApp as normal. Furthermore, ShaktiX's 2-Way Auto-Responder listens on your desktop and can automatically reply with pricing or catalogs 24/7.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- Final Call to Action -->
+    <section class="final-cta-section">
+      <div class="container">
+        <div class="cta-inner-card">
+          <div class="cta-glow"></div>
+          <h2>Ready to Supercharge Your WhatsApp Outreach?</h2>
+          <p>Join hundreds of businesses growing their sales with automated, personalized WhatsApp marketing today.</p>
+          <div class="cta-button-group">
+            <a href="https://wa.me/918298136441?text=Hi%20ShaktiX!%20I%20am%20ready%20to%20order%20the%20software.%20Please%20guide%20me." target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+              💬 Order on WhatsApp (+91 8298136441)
+            </a>
+            <a href="tel:+918825208568" class="btn btn-secondary btn-lg">
+              📞 Call Sales (+91 8825208568)
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-content">
-      <div class="footer-brand">
+      <div class="footer-col brand-col">
         <div class="logo">
           <span class="logo-bolt">⚡</span>
-          <span class="logo-text">ShaktiX Enterprise</span>
+          <span class="logo-text">ShaktiX <span>Enterprise</span></span>
         </div>
-        <p>Commercial WhatsApp Campaign Automation & Anti-Ban Marketing Platform.</p>
+        <p class="footer-desc">
+          High-performance Windows desktop software for compliant WhatsApp campaigns, dynamic Spintax personalization, and 2-way customer automation.
+        </p>
+        <div class="footer-contacts">
+          <p><b>WhatsApp Sales:</b> <a href="https://wa.me/918298136441" target="_blank" rel="noopener">+91 8298136441</a></p>
+          <p><b>Support Hotline:</b> <a href="tel:+918825208568">+91 8825208568</a></p>
+          <p><b>Location:</b> Patna / Delhi, India</p>
+        </div>
       </div>
-      <div class="footer-links">
-        <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQ</a>
-        <a href="javascript:void(0)" onclick="openLicenseModal()">Activate Key</a>
+
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#features">Features & Modules</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#demo">Live Simulator</a></li>
+          <li><a href="#dashboard-preview">Product Tour</a></li>
+          <li><a href="#pricing">Pricing Plans</a></li>
+        </ul>
       </div>
-      <div class="footer-copy">
-        &copy; 2026 ShaktiX Software Systems. All rights reserved.
+
+      <div class="footer-col">
+        <h4>Support & License</h4>
+        <ul>
+          <li><a href="javascript:void(0)" onclick="openLicenseModal()">🔑 Activate Hardware Key</a></li>
+          <li><a href="#security">System Requirements</a></li>
+          <li><a href="#faq">Frequently Asked Questions</a></li>
+          <li><a href="https://wa.me/918298136441?text=Hi!%20I%20need%20technical%20support%20for%20ShaktiX." target="_blank" rel="noopener">Technical Support</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Compliance & Policy</h4>
+        <p class="footer-legal">
+          Disclaimer: ShaktiX is an independent desktop automation utility designed for compliant communication with consenting customers. 
+          ShaktiX is not affiliated with, authorized, or endorsed by WhatsApp Inc. or Meta Platforms, Inc. 
+          Users must follow all applicable platform terms and anti-spam laws.
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>© 2026 ShaktiX Enterprise. All rights reserved.</p>
+        <p>Developed with ❤️ for High-Converting Outreach.</p>
       </div>
     </div>
   </footer>
 
-  <!-- License Activation Modal -->
+  <!-- Floating Sticky Contact Actions (Mobile & Desktop) -->
+  <div class="floating-contact-container">
+    <a href="tel:+918825208568" class="floating-btn float-call" aria-label="Call Sales" title="Call Sales (+91 8825208568)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+    </a>
+    <a href="https://wa.me/918298136441?text=Hi%20ShaktiX!%20I%20want%20to%20inquire%20about%20the%20WhatsApp%20Bulk%20Sender." target="_blank" rel="noopener" class="floating-btn float-whatsapp" aria-label="Chat on WhatsApp" title="Chat on WhatsApp (+91 8298136441)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z"/></svg>
+    </a>
+  </div>
+
+  <!-- Hardware License Verification Modal -->
   <div class="modal-backdrop" id="licenseModal">
     <div class="modal-box">
       <div class="modal-header">
-        <h3>🔑 Activate or Verify License Key</h3>
-        <button class="modal-close" onclick="closeLicenseModal()">&times;</button>
+        <div class="modal-title-group">
+          <span class="modal-icon">🔑</span>
+          <h3>Activate Hardware License</h3>
+        </div>
+        <button class="modal-close" onclick="closeLicenseModal()">✕</button>
       </div>
+
       <div class="modal-body">
-        <label>Your Windows Machine ID:</label>
-        <input type="text" id="modalMachineId" placeholder="e.g. B55291AF" value="B55291AF">
+        <p class="modal-desc">
+          Enter your 8-character <b>Machine ID</b> from your desktop software's License tab to verify or generate your activation key.
+        </p>
 
-        <label>License Plan:</label>
-        <select id="modalPlan">
-          <option value="STARTER">Starter (500 Msgs/day)</option>
-          <option value="PRO" selected>Pro Business (5,000 Msgs/day)</option>
-          <option value="BUSINESS">Agency / Enterprise (Unlimited)</option>
-        </select>
+        <div class="form-group">
+          <label for="modalMachineId">Your Machine ID (Hardware Fingerprint)</label>
+          <input type="text" id="modalMachineId" placeholder="e.g. B55291AF" maxlength="12" style="text-transform: uppercase;">
+        </div>
 
-        <label>Enter Activation Key:</label>
-        <input type="text" id="modalKeyInput" placeholder="SHAKTIX-PLAN-YYYYMMDD-MACHID-SIG">
+        <div class="form-group">
+          <label for="modalPlan">License Tier</label>
+          <select id="modalPlan">
+            <option value="PRO">Pro Business (1 Year / Unlimited)</option>
+            <option value="AGENCY">Agency Reseller (Lifetime Multi-Key)</option>
+            <option value="STARTER">Starter Edition (6 Months)</option>
+          </select>
+        </div>
 
-        <button class="btn btn-primary full-width" onclick="simulateKeyVerification()">⚡ Verify & Unlock Now</button>
+        <div class="form-group">
+          <label for="modalKeyInput">License Key (Optional: Leave blank to generate instant test key)</label>
+          <input type="text" id="modalKeyInput" placeholder="SHAKTIX-PRO-20270319-B55291AF-XXXX">
+        </div>
+
         <div id="modalAlert" class="modal-alert"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeLicenseModal()">Close</button>
+        <button class="btn btn-primary" onclick="simulateKeyVerification()">⚡ Verify with Cloud DB</button>
       </div>
     </div>
   </div>
