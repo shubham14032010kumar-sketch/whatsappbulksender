@@ -209,3 +209,42 @@ def can_dispatch_campaign(recipients_count=1):
             return False, "Trial mode is limited to 15 recipients per campaign. Upgrade to Pro or Business to remove this limit."
 
     return True, "Entitlement verified."
+
+
+# =========================================================================
+# Supabase Cloud Licensing & Machine Binding Integration
+# =========================================================================
+SUPABASE_URL = "https://dcbpqapojfxacpvjobyp.supabase.co"
+SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRjYnBxYXBvamZ4YWNwdmpvYnlwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk4MDM4MjAsImV4cCI6MjEwNTM3OTgyMH0.RSt2lJxaPh_JwcpORuBozkUSIYaRrVt1_y9eEPj3YwM"
+
+
+def check_cloud_license(machine_id=None):
+    """
+    Checks Supabase Cloud Database for an active license assigned to this machine.
+    If found, automatically activates and syncs it locally.
+    """
+    import json
+    import urllib.request
+    import urllib.error
+
+    mach = (machine_id or get_machine_id()).upper()
+    url = f"{SUPABASE_URL}/rest/v1/licenses?machine_id=eq.{mach}&is_active=eq.true&select=*"
+    headers = {
+        "apikey": SUPABASE_ANON_KEY,
+        "Authorization": f"Bearer {SUPABASE_ANON_KEY}",
+        "Content-Type": "application/json"
+    }
+
+    try:
+        req = urllib.request.Request(url, headers=headers, method="GET")
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+            if data and len(data) > 0:
+                lic = data[0]
+                key = lic.get("license_key")
+                if key:
+                    activate_key(key)
+                    return True, lic
+    except Exception:
+        pass
+    return False, None
