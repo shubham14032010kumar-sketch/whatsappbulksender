@@ -306,3 +306,65 @@ async function simulateKeyVerification() {
     }
   }
 }
+
+// =========================================================================
+// 4. Lead Capture & Callback Form Submission (Supabase + WhatsApp Sync)
+// =========================================================================
+async function handleLeadSubmit(event) {
+  event.preventDefault();
+  const name = document.getElementById("leadName")?.value.trim();
+  const phone = document.getElementById("leadPhone")?.value.trim();
+  const business = document.getElementById("leadBusiness")?.value || "General";
+  const city = document.getElementById("leadCity")?.value.trim() || "India";
+  const alertBox = document.getElementById("leadFormAlert");
+  const submitBtn = document.getElementById("btnSubmitLead");
+
+  if (!name || !phone) {
+    if (alertBox) {
+      alertBox.className = "lead-alert error";
+      alertBox.textContent = "Please fill in both your Name and 10-digit Mobile Number.";
+    }
+    return;
+  }
+
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting your request...";
+  }
+
+  // 1. Insert into Supabase cloud database
+  if (supabaseClient) {
+    try {
+      await supabaseClient.from('customer_queries').insert([{
+        customer_name: name,
+        customer_phone: phone,
+        business_type: business,
+        city: city,
+        message: `Callback requested for ${business} in ${city}`
+      }]);
+    } catch (e) {
+      console.warn("Supabase lead logging notice:", e);
+    }
+  }
+
+  // 2. Prepare WhatsApp notification to Shubham (+91 8298136441)
+  const waText = encodeURIComponent(`Hi Shubham! I just requested a callback/demo on your website:\n\n👤 Name: ${name}\n📱 Phone: ${phone}\n🏢 Industry: ${business}\n📍 City: ${city}\n\nPlease call me back with demo details.`);
+  const waUrl = `https://wa.me/918298136441?text=${waText}`;
+
+  // 3. Show success message on page
+  if (alertBox) {
+    alertBox.className = "lead-alert success";
+    alertBox.innerHTML = `✓ <b>Thank you ${name}!</b> Your callback request has been received. Opening WhatsApp to connect directly, and our specialist will call you at <b>${phone}</b> within 15 minutes!`;
+  }
+
+  // 4. Reset form & open WhatsApp in new tab
+  document.getElementById("leadCaptureForm")?.reset();
+  if (submitBtn) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "✓ Request Received! Opening WhatsApp...";
+  }
+
+  setTimeout(() => {
+    window.open(waUrl, "_blank");
+  }, 1200);
+}

@@ -557,6 +557,63 @@
       </div>
     </section>
 
+    <!-- Request Callback / Free Demo Consultation Section -->
+    <section class="callback-section" id="callback">
+      <div class="container">
+        <div class="callback-card">
+          <div class="callback-header">
+            <div class="badge-tag">⚡ Fast Response Guarantee</div>
+            <h2 class="callback-title">Request an Instant Callback & Free Live Demo</h2>
+            <p class="callback-desc">
+              Have questions or want to see the desktop software running live on AnyDesk or Google Meet? 
+              Fill in your details below and our product specialist will call you within <b>15 minutes</b>!
+            </p>
+          </div>
+
+          <form id="leadCaptureForm" class="callback-form" onsubmit="handleLeadSubmit(event)">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="leadName">Your Full Name *</label>
+                <input type="text" id="leadName" placeholder="e.g. Rahul Kumar" required>
+              </div>
+
+              <div class="form-group">
+                <label for="leadPhone">WhatsApp / Calling Number *</label>
+                <input type="tel" id="leadPhone" placeholder="e.g. 9835012345 (10 Digits)" pattern="[0-9]{10}" required>
+              </div>
+
+              <div class="form-group">
+                <label for="leadBusiness">Your Business / Industry *</label>
+                <select id="leadBusiness" required>
+                  <option value="" disabled selected>Select Industry</option>
+                  <option value="Coaching & Education">🎓 Coaching & Education</option>
+                  <option value="Real Estate & Plots">🏢 Real Estate & Property</option>
+                  <option value="Retail & Showrooms">🛍️ Retail & Showroom</option>
+                  <option value="B2B & Digital Agency">💼 B2B & Digital Marketing Agency</option>
+                  <option value="Financial & Payment Services">💳 Finance / Insurance / Loans</option>
+                  <option value="Other">✨ Other Business</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="leadCity">Your City *</label>
+                <input type="text" id="leadCity" placeholder="e.g. Patna, Delhi, Lucknow" required>
+              </div>
+            </div>
+
+            <div class="form-action-row">
+              <button type="submit" class="btn btn-primary btn-lg" id="btnSubmitLead">
+                📞 Request Instant Callback (+91 8825208568)
+              </button>
+              <span class="secure-tag">🔒 100% Privacy Protected. No spam ever.</span>
+            </div>
+
+            <div id="leadFormAlert" class="lead-alert"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
     <!-- Trust, Security & Compliance Section -->
     <section class="security-section" id="security">
       <div class="container">
